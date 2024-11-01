@@ -1,0 +1,96 @@
+<!-- cars/templates/compare.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Car Comparison</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        td { border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;}
+        .list-group-item { text-transform: uppercase;}
+        .container {
+            background-color: #ffffff;
+            margin-top: 80px;
+        }
+        .content {
+            text-align: center; 
+        }
+        .navbar {
+            color:#000;
+            width: 100%;
+            height: auto;
+            z-index: 999;
+            border: none;
+            outline: 0;
+            background: #f8f8f8;
+            margin-bottom: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06);
+        }
+
+        .navbar-brand {
+            font-size: 1.5em; /* Increase brand font size */
+            font-weight: bold; /* Bold text */
+        }
+
+        .nav-link {
+            font-size: 1.1em; /* Increase link font size */
+            color:#000;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: #d3d3d3 !important; /* Lighter color on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <h3>Technical Spec Comparision</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto"> <!-- Aligns the nav items to the right -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Go back Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Car Name</th>
+                <th>Length</th>
+                <th>Width</th>
+                <th>Height</th>
+                <th>Wheelbase</th>
+                <th>Boot Space</th>
+                <th>Seating Capacity</th>
+                <th>Turning_Radius</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+                <tr>
+                    <td class="list-group-item"><strong>{{ car.Modelname}}</strong></td>
+                    <td class="content">{{ car.Length|default_if_none:"-" }}{% if car.Length == "" %}-{% endif %}</td>
+                    <td class="content">{{ car.Width|default_if_none:"-" }}{% if car.Width == "" %}-{% endif %}</td>
+                    <td class="content">{{ car.Height|default_if_none:"-" }}{% if car.Height == "" %}-{% endif %}</td>
+                    <td class="content">{{ car.Wheelbase|default_if_none:"-" }}{% if car.Wheelbase == "" %}-{% endif %}</td>
+                    <td class="content">{{ car.Boot_Space|default_if_none:"-" }}{% if car.Boot_Space == "" %}-{% endif %}</td>
+                    <td class="content">{{ car.Seating_Capacity|default_if_none:"-" }}{% if car.Seating_Capacity == "" %}-{% endif %}</td>
+                    <td class="content">{{ car.Turning_Radius|default_if_none:"-" }}{% if car.Turning_Radius == "" %}-{% endif %}</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
