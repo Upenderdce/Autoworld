@@ -12,7 +12,7 @@ def scraped_data_view(request):
     data = Dimensions.objects.all()  # Fetch all scraped data from the database
     image_names = ['fronx.jpg', 'invicto.jpg', 'jimny.jpg','vitara.jpg','xl6.jpg','ignis.jpg','baleno.jpg','ciaz.jpg','celerio.jpg','wagonr.jpg','s-presso.jpg','ertiga.jpg','swift.jpg','alto.jpg','brezza.jpg','eeco.jpg','dzire.jpg']
     combined_lists = zip(data, image_names)
-    return render(request, 'auto.html', {'combined_lists': combined_lists})
+    return render(request, 'index.html', {'combined_lists': combined_lists})
 
 def feedbacks(request):
     return render(request,'feedbacks.html')
