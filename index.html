@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Vehicle Dimensions</title>
+    <style>
+        /* Navigation Bar */
+        .navbar {
+            color:#000;
+            width: 100%;
+            height: auto;
+            z-index: 999;
+            border: none;
+            outline: 0;
+            background: #f8f8f8;
+            margin-bottom: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06);
+        }
+
+        .navbar-brand {
+            font-size: 1.5em; /* Increase brand font size */
+            font-weight: bold; /* Bold text */
+        }
+
+        .nav-link {
+            font-size: 1.1em; /* Increase link font size */
+            color:#000;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: #d3d3d3 !important; /* Lighter color on hover */
+        }
+
+        /* Card Container */
+        .card {
+            width: 350px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Hover Effect */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Card Image */
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Card Content */
+        .card-content {
+            margin-top: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Card Button */
+        .card-button {
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            text-align: center;
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .card-button:hover {
+            background-color: #838383;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <h3>MARUTI VEHICLES</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto"> <!-- Aligns the nav items to the right -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/compare/">Spec Compare</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Price Compare</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container text-bg-primary mb-3">
+        <h2 class="text-center mt-4 mb-4"><strong>Maruti Vehicles Details</strong></h2>
+        <div class="row">
+            {% for item, item2 in combined_lists %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <a href="/feedback_chart/{{item.Modelname}}">
+                        <h4 class="card-title text-center">Maruti {{item.Modelname}}</h4>
+                        <img src="/static/{{item2}}" class="card-img-top" alt="Image of {{item.Modelname}}">
+                    </a>
+                    <div class="card-content">
+                        <ul class="list-group">
+                            <li class="list-group-item">Length(mm) : <strong>{{item.Length}}</strong></li>
+                            <li class="list-group-item">Width(mm) : <strong>{{item.Width}}</strong></li>
+                            <li class="list-group-item">Height(mm) : <strong>{{item.Height}}</strong></li>
+                            <li class="list-group-item">Wheelbase(mm) : <strong>{{item.Wheelbase}}</strong></li>
+                            <li class="list-group-item">Boot Space(L) : <strong>{{item.Boot_Space}}</strong></li>
+                            <li class="list-group-item">Seating Capacity : <strong>{{item.Seating_Capacity}}</strong></li>
+                            <li class="list-group-item">Turning Radius(m) : <strong>{{item.Turning_Radius}}</strong></li>
+                        </ul>
+                    </div>
+                    <a href="/feedback_chart/{{item.Modelname}}" class="card-button">Dashboard</a>
+                </div>
+            </div>
+            {% endfor %}  
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
